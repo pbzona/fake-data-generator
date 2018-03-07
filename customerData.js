@@ -67,7 +67,7 @@ fs.writeFileSync(outfile, cols)
 
 // initialize the iterator var (i) and define the number of rows to write
 let i = 1;
-const = lengthOfData = 300;
+const lengthOfData = 300;
 
 // add all the fake data to the table
 while (i <= lengthOfData) {

@@ -70,7 +70,7 @@ function getPath() {
     case 2:
       return '/login';
     case 3:
-      return `/images/${shortid.generate()}`;
+      return `/images/${shortid.generate()}.jpg`;
     default:
       return '/';
   }
@@ -86,7 +86,7 @@ function generateAccessLog(n) {
   // reset on each run
   fs.writeFileSync(outfile, '');
   for (let i = 0; i < n; i++) {
-    let row = `${moment(timestamps[i]).toISOString()} ${elb} ${faker.internet.ip()}:${frontPort} ${i % 2 === 0 ? backends[0] : backends[1]}:${backPort} ${getReqTime()} ${getReqTime()} ${getReqTime()} ${frontStatusCode} ${getStatusCode()} ${receivedBytes} ${getSentBytes()} ${getRequest()} "${faker.internet.userAgent()}" "${sslCipher} TLSv1.${i % 6 !== 0 ? '2' : '1'}\n`;
+    let row = `${moment(timestamps[i]).toISOString()} ${elb} ${faker.internet.ip()}:${frontPort} ${i % 2 === 0 ? backends[0] : backends[1]}:${backPort} ${getReqTime()} ${getReqTime()} ${getReqTime()} ${frontStatusCode} ${getStatusCode()} ${receivedBytes} ${getSentBytes()} ${getRequest()} "${faker.internet.userAgent()}" "${sslCipher}" TLSv1.${i % 6 !== 0 ? '2' : '1'}\n`;
 
     fs.appendFileSync(outfile, row)
   }

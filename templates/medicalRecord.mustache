@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Medical History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    header, section {
+      text-align: center;
+    }
+
+    section.patient-info {
+      text-align: left;
+      padding: 0 3rem;
+    }
+
+    p.patient-row {
+      display: flex;
+      position: relative;
+    }
+
+    span.patient-field {
+      font-weight: bold;
+    }
+
+    span.patient-detail {
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tg {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .tg td {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 5px 5px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
+    }
+
+    .tg th {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: normal;
+      padding: 5px 5px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
+    }
+
+    .tg .tg-yw4l {
+      font-size: 8px;
+      vertical-align: top
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>MEDICAL HISTORY</h1>
+  </header>
+  <section class="patient-info">
+    <p class="patient-row">
+      <span class="patient-field">Identification Number:</span>&nbsp;
+      <span class="patient-detail"> {{patient.id}} </span>
+    </p>
+    <p class="patient-row">
+      <span class="patient-field">Patient Name:</span>&nbsp;
+      <span class="patient-detail">{{patient.name}}</span>
+    </p>
+    <p class="patient-row">
+      <span class="patient-field">DOB:</span>&nbsp;
+      <span class="patient-detail">{{patient.dob}}</span>
+    </p>
+    <p class="patient-row">
+      <span class="patient-field">Address:</span>&nbsp;
+      <span class="patient-detail">{{patient.address}}</span>
+    </p>
+  </section>
+  <section>
+    <h2>CURRENT/PAST MEDICATIONS</h2>
+    <table class="tg">
+      <tr>
+        <th class="tg-yw41">Name</th>
+        <th class="tg-yw4l">Dose</th>
+        <th class="tg-yw4l">Frequency</th>
+        <th class="tg-yw4l">Starting</th>
+        <th class="tg-yw4l">Ending</th>
+        <th class="tg-yw4l">Physician</th>
+        <th class="tg-yw4l">Purpose</th>
+      </tr>
+
+      {{#medications}}
+        <tr>
+          <td class="tg-yw4l">{{name}}</td>
+          <td class="tg-yw4l">{{dose}}</td>
+          <td class="tg-yw4l">{{frequency}}</td>
+          <td class="tg-yw4l">{{starting}}</td>
+          <td class="tg-yw4l">{{ending}}</td>
+          <td class="tg-yw4l">{{physician}}</td>
+          <td class="tg-yw4l">{{purpose}}</td>
+        </tr>
+      {{/medications}}
+
+    </table>
+  </section>
+  <section>
+    <h2>SURGICAL PROCEDURES</h2>
+    <table class="tg">
+      <tr>
+        <th class="tg-yw4l">Date</th>
+        <th class="tg-yw4l">Procedure</th>
+        <th class="tg-yw4l">Physician</th>
+        <th class="tg-yw4l">Hospital</th>
+        <th class="tg-yw4l">Notes</th>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h2>MAJOR ILLNESSES</h2>
+    <table class="tg">
+      <tr>
+        <th class="tg-yw4l">Illness</th>
+        <th class="tg-yw4l">Start</th>
+        <th class="tg-yw4l">End</th>
+        <th class="tg-yw4l">Hospital</th>
+        <th class="tg-yw4l">Notes</th>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l"></td>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h2>VACCINATIONS</h2>
+    <table class="tg">
+      <tr>
+        <th class="tg-yw4l">Name</th>
+        <th class="tg-yw4l">Date</th>
+        <th class="tg-yw4l">Name</th>
+        <th class="tg-yw4l">Date</th>
+      </tr>
+      <tr>
+        <td class="tg-yw4l">Tetanus</td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l">Meningitis</td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l">Influenza</td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l">Yellow Fever</td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l">Zostavax</td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l">Polio</td>
+        <td class="tg-yw4l"></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l">Other</td>
+        <td class="tg-yw4l"></td>
+        <td class="tg-yw4l">Other</td>
+        <td class="tg-yw4l"></td>
+      </tr>
+    </table>
+  </section>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 # Fake Data Generator
 
-This is a set of Node.js scripts that generates fake data. Fake data, in this context, means  pseudorandom sets of information that can be used for a demo or another situation where you want to show a specific concept without resorting to lorem ipsum or other placeholder text.
+This is a set of Node.js scripts that generates fake data. Fake data, in this context, means pseudorandom sets of information that can be used for a demo or another situation where you want to show a specific concept without resorting to lorem ipsum or other placeholder text.
 
 Currently, the scope is limited to generating predefined sets of data. If you want to customize something, you'll need to edit the code. Planning to make this a library at some point.
 
@@ -15,6 +15,10 @@ This generates a tab-separated-value file containing a row of headings commonly 
 ### AWS Access Logs
 
 This generates a file based on the format of AWS Elastic Load Balancer access logs (HTTPS requests). Set to generate 300 data points, but this is easily adjustable within the script.
+
+### Medical History Forms
+
+This generates a PDF file containing sensitive "medical histories" including medication history, surgical procedures, major illnesses and vaccination records.
 
 ## Future Plans
 

@@ -10,6 +10,10 @@ const getRandomItemFromList = list => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
+const shortRandom = range => {
+  return Math.floor(Math.random() * range[1]) + range[0];
+};
+
 // EXPORTS
 
 // generates a realistic birthday based on user defined variables
@@ -199,6 +203,42 @@ const randomTimeInFirstXYears = (X, yearOfBirth) => {
   return yearOfBirth + randomYears;
 };
 
+// generate a list of sequential dates from a random starting point
+const generateSequentialDates = length => {
+  let dateList = [];
+
+  let current = magic.randomDayInLastXPlusYears(5);
+  for (let i = 0; i < length; i++) {
+    dateList.push(current.format('M/D/YYYY'));
+    const daysToAdd = Math.floor(Math.random() * 3);
+    current = current.add(daysToAdd, 'days');
+  }
+
+  return dateList;
+};
+
+// get random drug quantity
+const getDrugQuantity = () => {
+  return shortRandom([1, 5]);
+};
+
+// get random drug "units" for inventory sheet
+const getDrugUnits = () => {
+  return getRandomItemFromList(randomData.drugUnits);
+};
+
+// generates a date sometime in the next X years
+const randomDateInNextXYears = X => {
+  const yearsToAdd = shortRandom([1, X]);
+  const monthsToAdd = shortRandom([1, 11]);
+  const daysToAdd = shortRandom([1, 30]);
+
+  return moment()
+    .add(yearsToAdd, 'years')
+    .add(monthsToAdd, 'months')
+    .add(daysToAdd, 'days');
+};
+
 const magic = {
   getBirthday,
   getBirthdayDetailed,
@@ -218,7 +258,11 @@ const magic = {
   getSurgicalNotes,
   getIllness,
   getIllnessNotes,
-  randomTimeInFirstXYears
+  randomTimeInFirstXYears,
+  generateSequentialDates,
+  getDrugQuantity,
+  getDrugUnits,
+  randomDateInNextXYears
 };
 
 module.exports = magic;

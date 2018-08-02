@@ -30,8 +30,23 @@ class Illness {
   }
 }
 
+class DrugInventory {
+  constructor(drugInventory) {
+    this.date = drugInventory.date || ' ';
+    this.patientName = drugInventory.patientName || ' ';
+    this.mrn = drugInventory.mrn || ' ';
+    this.quantity = drugInventory.quantity || ' ';
+    this.lotNumber = drugInventory.lotNumber || ' ';
+    this.expiration = drugInventory.expiration || ' ';
+    this.patientEducated = drugInventory.patientEducated || ' ';
+    this.physician = drugInventory.physician || ' ';
+    this.signature = ' ';
+  }
+}
+
 module.exports = {
   Medication,
   Surgery,
-  Illness
+  Illness,
+  DrugInventory
 };

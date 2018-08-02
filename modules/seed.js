@@ -97,6 +97,8 @@ const illnessNotes = [
   ''
 ];
 
+const drugUnits = ['Tablets', 'Capsules', 'Bottles', 'Tubes'];
+
 const randomData = {
   ailments,
   surgicalProcedures,
@@ -104,7 +106,8 @@ const randomData = {
   hospitalSuffix,
   surgicalNotes,
   illnesses,
-  illnessNotes
+  illnessNotes,
+  drugUnits
 };
 
 module.exports = randomData;

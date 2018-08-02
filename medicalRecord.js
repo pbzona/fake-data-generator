@@ -68,7 +68,7 @@ const generateIllnessList = length => {
       6
     );
     illnessList.push({
-      type: magic.getIllness(),
+      illness: magic.getIllness(),
       start: timeFrame.start,
       end: timeFrame.end,
       hospital: magic.getHospital(),

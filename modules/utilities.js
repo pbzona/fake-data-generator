@@ -199,6 +199,32 @@ const randomTimeInFirstXYears = (X, yearOfBirth) => {
   return yearOfBirth + randomYears;
 };
 
+// concat a full name from faker
+const getFullName = () => {
+  return `${faker.name.firstName()} ${faker.name.lastName()}`;
+};
+
+// generates a drug name based on latin words of more than 5 characters
+const getDrugName = () => {
+  const drug = faker.lorem.word();
+  return drug.length > 5
+    ? `${drug.charAt(0).toUpperCase()}${drug.slice(1)}`
+    : getDrugName();
+};
+
+// generate dose between 5 and 150mg
+const getMedDose = () => {
+  return `${Math.floor(Math.random() * 30) * 5 + 5}mg`;
+};
+
+//generate a frequency of 1-3x per [week or day]
+const getMedFrequency = () => {
+  const period = Math.round(Math.random()) ? 'day' : 'week';
+  return `${Math.floor(Math.random() * 3) + 1}x per ${period}`;
+};
+
+const getTimeframe = prev => {};
+
 const magic = {
   getBirthday,
   getBirthdayDetailed,

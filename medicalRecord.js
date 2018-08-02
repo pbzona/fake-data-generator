@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const magic = require('./modules/utilities');
+const Record = require('./modules/models');
 
 const moment = require('moment');
 const faker = require('faker');
@@ -26,15 +27,17 @@ const generateMedsList = length => {
       Math.floor(Math.random() * 4),
       18
     );
-    medsList.push({
-      name: magic.getDrugName(),
-      dose: magic.getMedDose(),
-      frequency: magic.getMedFrequency(),
-      starting: timeFrame.start,
-      ending: timeFrame.end,
-      physician: `Dr. ${faker.name.lastName()}`,
-      purpose: magic.getAilment()
-    });
+    medsList.push(
+      new Record.Medication({
+        name: magic.getDrugName(),
+        dose: magic.getMedDose(),
+        frequency: magic.getMedFrequency(),
+        starting: timeFrame.start,
+        ending: timeFrame.end,
+        physician: `Dr. ${faker.name.lastName()}`,
+        purpose: magic.getAilment()
+      })
+    );
   }
   return medsList;
 };
@@ -42,18 +45,20 @@ const generateMedsList = length => {
 const generateSurgeryList = length => {
   let surgeryList = [];
   for (let i = 0; i < length; i++) {
-    surgeryList.push({
-      date: magic
-        .randomDayInLastXPlusYears(
-          Math.floor(Math.random() * (patientAge / 3)),
-          1
-        )
-        .format('MM-DD-YYYY'),
-      procedure: magic.getSurgicalProcedure(),
-      physician: `Dr. ${faker.name.lastName()}`,
-      hospital: magic.getHospital(),
-      notes: magic.getSurgicalNotes()
-    });
+    surgeryList.push(
+      new Record.Surgery({
+        date: magic
+          .randomDayInLastXPlusYears(
+            Math.floor(Math.random() * (patientAge / 3)),
+            1
+          )
+          .format('MM-DD-YYYY'),
+        procedure: magic.getSurgicalProcedure(),
+        physician: `Dr. ${faker.name.lastName()}`,
+        hospital: magic.getHospital(),
+        notes: magic.getSurgicalNotes()
+      })
+    );
   }
 
   return surgeryList;
@@ -67,13 +72,15 @@ const generateIllnessList = length => {
       Math.floor(Math.random() * 4),
       6
     );
-    illnessList.push({
-      illness: magic.getIllness(),
-      start: timeFrame.start,
-      end: timeFrame.end,
-      hospital: magic.getHospital(),
-      notes: magic.getIllnessNotes()
-    });
+    illnessList.push(
+      new Record.Illness({
+        illness: magic.getIllness(),
+        start: timeFrame.start,
+        end: timeFrame.end,
+        hospital: magic.getHospital(),
+        notes: magic.getIllnessNotes()
+      })
+    );
   }
 
   return illnessList;

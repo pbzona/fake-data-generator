@@ -19,6 +19,21 @@ const patientYearOfBirth = patientBirthday.year;
 
 const historyLength = magic.randomTimeInLastXPlusYears(14, 2);
 
+const generateTable = (dataRowFunction, totalRowCount, Model) => {
+  const dataRowCount = Math.floor(Math.random() * totalRowCount) + 2;
+  const emptyRowCount = totalRowCount - dataRowCount;
+
+  const emptyRowFunction = () => {
+    let emptyRows = [];
+    for (let i = 0; i < emptyRowCount; i++) {
+      emptyRows.push(new Model({}));
+    }
+    return emptyRows;
+  };
+
+  return dataRowFunction.apply(null, [dataRowCount]).concat(emptyRowFunction());
+};
+
 const generateMedsList = length => {
   let medsList = [];
   for (let i = 0; i < length; i++) {
@@ -119,9 +134,9 @@ const data = {
     address: magic.getFullAddress()
   },
   // Randomize number of rows
-  medications: generateMedsList(Math.floor(Math.random() * 4) + 2),
-  surgeries: generateSurgeryList(Math.floor(Math.random()) + 1),
-  illnesses: generateIllnessList(Math.floor(Math.random() * 2) + 1),
+  medications: generateTable(generateMedsList, 5, Record.Medication),
+  surgeries: generateTable(generateSurgeryList, 4, Record.Surgery),
+  illnesses: generateTable(generateIllnessList, 4, Record.Illness),
   vaccinations: generateVaccinationList(7)
 };
 const html = Mustache.render(template, data);

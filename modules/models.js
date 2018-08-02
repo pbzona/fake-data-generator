@@ -1,6 +1,6 @@
 class Medication {
   constructor(medication) {
-    this.name = medication.name || ' ';
+    this.name = medication.name || '.';
     this.dose = medication.dose || ' ';
     this.frequency = medication.frequency || ' ';
     this.starting = medication.starting || ' ';
@@ -12,7 +12,7 @@ class Medication {
 
 class Surgery {
   constructor(surgery) {
-    this.date = surgery.date || ' ';
+    this.date = surgery.date || '.';
     this.procedure = surgery.procedure || ' ';
     this.physician = surgery.physician || ' ';
     this.hospital = surgery.hospital || ' ';
@@ -22,7 +22,7 @@ class Surgery {
 
 class Illness {
   constructor(illness) {
-    this.illness = illness.illness || ' ';
+    this.illness = illness.illness || '.';
     this.start = illness.start || ' ';
     this.end = illness.end || ' ';
     this.hospital = illness.hospital || ' ';

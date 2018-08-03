@@ -239,6 +239,11 @@ const randomDateInNextXYears = X => {
     .add(daysToAdd, 'days');
 };
 
+// concat a name in format (last name, first name) from faker
+const getFullReversedName = () => {
+  return `${faker.name.lastName()}, ${faker.name.firstName()}`;
+};
+
 const magic = {
   getBirthday,
   getBirthdayDetailed,
@@ -262,7 +267,8 @@ const magic = {
   generateSequentialDates,
   getDrugQuantity,
   getDrugUnits,
-  randomDateInNextXYears
+  randomDateInNextXYears,
+  getFullReversedName
 };
 
 module.exports = magic;

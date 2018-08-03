@@ -97,7 +97,7 @@ const illnessNotes = [
   ''
 ];
 
-const drugUnits = ['Tablets', 'Capsules', 'Bottles', 'Tubes'];
+const drugUnits = ['Tablets', 'Capsules', 'Pills'];
 
 const randomData = {
   ailments,

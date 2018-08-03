@@ -40,7 +40,7 @@ class DrugInventory {
     this.expiration = drugInventory.expiration || ' ';
     this.patientEducated = drugInventory.patientEducated || ' ';
     this.physician = drugInventory.physician || ' ';
-    this.signature = ' ';
+    this.signature = '       .';
   }
 }
 

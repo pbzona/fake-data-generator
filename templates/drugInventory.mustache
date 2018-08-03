@@ -13,7 +13,7 @@
 
     body {
       font-family: sans-serif;
-      padding-top: 4rem;
+      padding-top: 2rem;
     }
 
     header,
@@ -21,9 +21,10 @@
       text-align: center;
     }
 
-    section.patient-info {
+    section.drug-info {
       text-align: left;
       padding: 0 3rem;
+      margin-bottom: 2rem
     }
 
     p.drug-row {
@@ -74,7 +75,7 @@
     .tg th {
       font-family: Arial, sans-serif;
       font-size: 10px;
-      font-weight: normal;
+      font-weight: bold;
       padding: 5px 5px;
       border-style: solid;
       border-width: 1px;
@@ -107,6 +108,36 @@
       <span class="drug-field">UNITS:</span>&nbsp;
       <span class="drug-detail">{{drug.units}}</span>
     </p>
+  </section>
+  <section>
+    <table class="tg">
+      <tr>
+        <th class="tg-yw41">Date</th>
+        <th class="tg-yw4l">Patient</th>
+        <th class="tg-yw4l">MRN</th>
+        <th class="tg-yw4l">Quantity</th>
+        <th class="tg-yw4l">Lot #</th>
+        <th class="tg-yw4l">Expiration</th>
+        <th class="tg-yw4l">Pt. Ed.</th>
+        <th class="tg-yw4l">Physician</th>
+        <th class="tg-yw4l">Signature</th>
+      </tr>
+
+      {{#inventoryRows}}
+        <tr>
+          <td class="tg-yw4l">{{date}}</td>
+          <td class="tg-yw4l">{{patientName}}</td>
+          <td class="tg-yw4l">{{mrn}}</td>
+          <td class="tg-yw4l">{{quantity}}</td>
+          <td class="tg-yw4l">{{lotNumber}}</td>
+          <td class="tg-yw4l">{{expiration}}</td>
+          <td class="tg-yw4l">{{patientEducated}}</td>
+          <td class="tg-yw4l">{{physician}}</td>
+          <td class="tg-yw4l">{{signature}}</td>
+        </tr>
+      {{/inventoryRows}}
+
+    </table>
   </section>
 </body>
 

@@ -10,15 +10,20 @@ const faker = require('faker');
 const Mustache = require('mustache');
 const pdf = require('html-pdf');
 
-const template = fs
-  .readFileSync(path.join(__dirname, 'templates', 'medicalRecord.mustache'))
-  .toString();
+const generateTable = (dataRowFunction, totalRowCount, Model) => {
+  const dataRowCount = Math.floor(Math.random() * totalRowCount) + 2;
+  const emptyRowCount = totalRowCount - dataRowCount;
 
-const pdfOptions = {
-  orientation: 'Landscape'
+  const emptyRowFunction = () => {
+    let emptyRows = [];
+    for (let i = 0; i < emptyRowCount; i++) {
+      emptyRows.push(new Model({}));
+    }
+    return emptyRows;
+  };
+
+  return dataRowFunction.apply(null, [dataRowCount]).concat(emptyRowFunction());
 };
-
-const generateTable = () => {};
 
 const generateInventoryList = length => {
   const dateList = magic.generateSequentialDates(length);
@@ -28,10 +33,16 @@ const generateInventoryList = length => {
     inventoryList.push(
       new Record.DrugInventory({
         date: dateList[i],
-        patientName: magic.getFullName(),
+        patientName: magic.getFullReversedName(),
         mrn: magic.getLongNumber(7),
         quantity: magic.getDrugQuantity(),
-        lotNumber: shortid.generate().toUpperCase(),
+        lotNumber: shortid
+          .generate()
+          .toUpperCase()
+          .split('_')
+          .join('')
+          .split('-')
+          .join(''),
         expiration: moment(magic.randomDateInNextXYears(6)).format('M/D/YYYY'),
         patientEducated: 'YES',
         physician: `Dr. ${faker.name.lastName()}`
@@ -46,8 +57,23 @@ const data = {
   drug: {
     name: magic.getDrugName(),
     clinic: magic.getHospital(),
-    units: magic.getDrugUnits()
-  }
+    units: `${magic.getDrugUnits()} (${magic.getMedDose()})`
+  },
+  inventoryRows: generateTable(generateInventoryList, 20, Record.DrugInventory)
 };
 
-console.log(generateInventoryList(5));
+const template = fs
+  .readFileSync(path.join(__dirname, 'templates', 'drugInventory.mustache'))
+  .toString();
+
+const html = Mustache.render(template, data);
+
+const pdfOptions = {
+  orientation: 'Landscape'
+};
+
+pdf
+  .create(html, pdfOptions)
+  .toFile(path.join(__dirname, 'drugInventory.pdf'), (err, stream) => {
+    console.log('Done!');
+  });

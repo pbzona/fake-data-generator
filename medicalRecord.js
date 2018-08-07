@@ -17,6 +17,9 @@ const patientBirthday = magic.getBirthdayDetailed(18, 80);
 const patientAge = patientBirthday.age;
 const patientYearOfBirth = patientBirthday.year;
 
+const patientName = magic.getFullName();
+const patientId = magic.getLongNumber(7);
+
 const historyLength = magic.randomTimeInLastXPlusYears(14, 2);
 
 const generateTable = (dataRowFunction, totalRowCount, Model) => {
@@ -128,8 +131,8 @@ const generateVaccinationList = maxAge => {
 
 const data = {
   patient: {
-    id: magic.getLongNumber(8),
-    name: magic.getFullName(),
+    id: patientId,
+    name: patientName,
     dob: patientBirthday.dob,
     address: magic.getFullAddress()
   },
@@ -141,8 +144,11 @@ const data = {
 };
 const html = Mustache.render(template, data);
 
-pdf
-  .create(html)
-  .toFile(path.join(__dirname, 'medicalRecord.pdf'), (err, stream) => {
-    console.log('Done!');
-  });
+const outputFile = `${patientName
+  .split(' ')
+  .join('_')
+  .toLowerCase()}_${patientId}.pdf`;
+
+pdf.create(html).toFile(path.join(__dirname, outputFile), (err, stream) => {
+  console.log('Done!');
+});
